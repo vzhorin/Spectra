@@ -139,21 +139,8 @@ integer*4 numlevtofit
 integer*4,save ::  fastfitflag
 
 integer*4,parameter,public  :: ID_LICENSE=1111,ID_DISCLAIMER=1112
-character*800 :: disclaimer=" DISCLAIMER&
-NEITHER THE UNITED STATES GOVERNMENT NOR ANY& 
-AGENCY THEREOF, NOR THE UNIVERSITY&
-OF CHICAGO, OR ANY OF THEIR EMPLOYEES,&
- MAKES ANY WARRANTY, EXPRESS OR IMPLIED,&
-OR ASSUMES ANY LEGAL LIABILITY OR RESPONSIBILITY&
- FOR THE ACCURACY, COMPLETENESS, &
-OR USEFULNESS OF ANY INFORMATION, APPARATUS, PRODUCT, &
-OR PROCESS DISCLOSED, OR&
-REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY OWNED RIGHTS"C
-character*800 ::  license="License\n Portions of this material resulted from work developed under a U.S. Goverment contract &
-and are subject to the following license: the Government is granted for itself and &
-others acting in its behalf a paid-up, nonexclusive, irrevocable worldwide license in &
-this computer software to reproduce, prepare derivative works, and perform publicly and &
-display publicly"C
+character*800 :: disclaimer=" "C
+character*800 ::  license="License\n"C
 
 
 end module		 
