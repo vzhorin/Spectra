@@ -1,0 +1,932 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+ANL                     ICON    DISCARDABLE     "icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New...",                     ID_FILENEW
+        MENUITEM "&Open...",                    ID_FILEOPEN
+        MENUITEM "&Close",                      ID_FILECLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Exit",                       ID_EXIT
+    END
+    POPUP "&Parameters"
+    BEGIN
+        POPUP "&Free Ion"
+        BEGIN
+            MENUITEM "&New",                        ID_PFREEION_NEW
+            MENUITEM "&Open",                       ID_PFREEION_OPEN
+        END
+        POPUP "&Crystal Field"
+        BEGIN
+            MENUITEM "&New",                        ID_PCR_NEW
+            MENUITEM "&Open",                       ID_PCR_OPEN
+            MENUITEM "&Calculate",                  ID_FIELD_CALCULATE
+        END
+        POPUP "&Advanced Free Ion"
+        BEGIN
+            MENUITEM "&New",                        ID_PAD_NEW
+            MENUITEM "&Open",                       ID_PAD_OPEN
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Copy to clipboard",           ID_COPY, GRAYED
+        MENUITEM "&Save parameters",            ID_PSAVE
+    END
+    POPUP "&Start"
+    BEGIN
+        MENUITEM "&Calculate energy levels",    ID_CALCULATE
+        MENUITEM "&Fit experimental data",      ID_FIT
+        MENUITEM "&Fast fit",                   ID_FASTFIT
+        MENUITEM SEPARATOR
+        MENUITEM "&Stop calculation",           ID_STOPIT
+    END
+    POPUP "&Database"
+    BEGIN
+        MENUITEM "&Matrix elements...",         ID_MATRIX
+        MENUITEM "&Energy levels",              ID_ENERGY_LEVELS
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Options...",                 ID_OPTIONS
+        MENUITEM "&Show command window",        ID_SHOWCMD, GRAYED
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Contents",                   ID_HELPCONTENT
+        MENUITEM "&About",                      ID_ABOUT
+    END
+END
+
+FILEM MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Save",                       ID_CALCULATE_SAVE
+    END
+    POPUP "&Optics"
+    BEGIN
+        MENUITEM "&Judd-Ofelt analysis",        ID_JUDDOFELT, GRAYED
+        MENUITEM "&Spectrum generation",        ID_JUDDOFELT, GRAYED
+    END
+    POPUP "&Zeeman"
+    BEGIN
+        MENUITEM "&g-factor values",            ID_ZEEMAN_G
+        MENUITEM "&ESR Spectrum",               ID_ESRSPECTRUM, GRAYED
+    END
+END
+
+SETTING MENU DISCARDABLE 
+BEGIN
+    POPUP "Setting"
+    BEGIN
+        MENUITEM "&Save",                       ID_SETTING_SAVE
+    END
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x9L
+#else
+ FILEFLAGS 0x8L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "Written by V.V.Zhorin\0"
+            VALUE "CompanyName", "Argonne National Laboratory\0"
+            VALUE "FileDescription", "Spectra\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "Spectra\0"
+            VALUE "LegalCopyright", "Portions of this material resulted from work developed under a U.S. Goverment contract\r\n\0"
+            VALUE "LegalTrademarks", "Written by V.V.Zhorin\0"
+            VALUE "OriginalFilename", "Spectra.exe\0"
+            VALUE "PrivateBuild", "1.1.1\0"
+            VALUE "ProductName", "ANL Spectra\0"
+            VALUE "ProductVersion", "1.1 \0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ABOUT DIALOGEX 0, 0, 250, 136
+STYLE DS_3DLOOK | DS_CENTER | WS_POPUP | WS_BORDER
+EXSTYLE WS_EX_CLIENTEDGE
+FONT 8, "Arial"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,190,118,40,15,BS_CENTER
+    CTEXT           "CompanyName",400,165,5,65,20
+    LTEXT           "FileDescription",401,172,70,30,14
+    LTEXT           "ProductVersion",402,209,70,34,14
+    CTEXT           "LegalTrademarks",403,168,88,75,15
+    CTEXT           "Heavy Elements Photophysics and Photochemistry Group",
+                    IDC_STATIC,165,25,65,35
+    CONTROL         "FIELD",IDC_STATIC,"Static",SS_BITMAP | SS_CENTERIMAGE | 
+                    SS_REALSIZEIMAGE | SS_SUNKEN,7,7,160,126,
+                    WS_EX_TRANSPARENT
+END
+
+PARAMF DIALOG DISCARDABLE  0, 0, 191, 208
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Free-Ion Parameters"
+FONT 10, "Arial"
+BEGIN
+    GROUPBOX        "Electrostatic parameters",IDC_STATIC,15,50,160,52,
+                    BS_CENTER | WS_GROUP
+    CTEXT           "Enter Free-Ion Parameters",IDC_STATIC,15,5,160,8
+    EDITTEXT        ID_PF2,25,75,40,12
+    PUSHBUTTON      "OK",IDOK,105,180,30,15
+    PUSHBUTTON      "Cancel",IDCANCEL,150,180,30,15
+    EDITTEXT        ID_PF4,75,75,40,12
+    EDITTEXT        ID_PFDZETA,85,135,45,12
+    CTEXT           "F2",IDC_STATIC,30,60,30,10
+    CTEXT           "F4",IDC_STATIC,80,60,30,10
+    CTEXT           "F6",IDC_STATIC,130,60,30,10
+    GROUPBOX        "Spin-Orbit Coupling",IDC_STATIC,30,120,120,40,BS_CENTER
+    CTEXT           "Dzeta",IDC_STATIC,45,135,35,10
+    EDITTEXT        ID_PF6,125,75,40,12
+    CTEXT           "Default name for current task",ID_PFSTATICNAME,15,20,
+                    160,18
+    PUSHBUTTON      "Set",IDYES,60,180,30,15
+    PUSHBUTTON      "Undo",IDRETRY,15,180,30,15
+END
+
+REDUCED DIALOG DISCARDABLE  0, 0, 334, 192
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Reduced matrix elements"
+FONT 10, "Arial"
+BEGIN
+    DEFPUSHBUTTON   "Finish",IDOK,295,135,31,14
+    PUSHBUTTON      "Update",ID_MUPDATE,295,30,30,14,WS_DISABLED
+    PUSHBUTTON      "Query",ID_MQUERY,295,55,30,14
+    CTEXT           "First Term",IDC_STATIC,21,35,45,8
+    LTEXT           "Second Term",IDC_STATIC,73,35,45,8
+    CTEXT           "Interaction Type",IDC_STATIC,129,34,110,8
+    DEFPUSHBUTTON   "New",IDYES,295,5,31,14,WS_DISABLED
+    GROUPBOX        "Reduced matrix element",IDC_STATIC,14,90,271,94,
+                    BS_CENTER
+    CTEXT           "Press Query button",ID_MATRIXVALUE,25,165,240,8
+    PUSHBUTTON      "Cancel",IDCANCEL,295,85,30,14
+    LISTBOX         ID_MLIST1,25,45,35,35,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    LISTBOX         ID_MLIST3,130,44,105,35,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LISTBOX         ID_MLIST2,79,44,35,35,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    CTEXT           "Select terms and type of interaction",IDC_STATIC,33,7,
+                    200,10,SS_SUNKEN
+    CTEXT           "Text1",ID_MTEXT1,25,110,65,13,SS_SUNKEN
+    CTEXT           "Text2",ID_MTEXT2,121,110,65,13,SS_SUNKEN
+    CTEXT           "Text3",ID_MTEXT3,215,110,65,13,SS_SUNKEN
+    CTEXT           "Result1",ID_MRESULT1,24,140,65,13,SS_SUNKEN
+    CTEXT           "Result1",ID_MRESULT2,120,140,65,13,SS_SUNKEN
+    CTEXT           "Result1",ID_MRESULT3,215,140,65,13,SS_SUNKEN
+END
+
+CONFIG DIALOG DISCARDABLE  0, 0, 199, 172
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_VISIBLE
+FONT 11, "Arial"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,60,150,30,15
+    PUSHBUTTON      "Cancel",IDCANCEL,115,150,35,15
+    GROUPBOX        "f-electrons",IDC_STATIC,10,85,180,60,BS_CENTER
+    CONTROL         "d1",ID_D1,"Button",BS_AUTORADIOBUTTON | WS_DISABLED | 
+                    WS_TABSTOP,25,30,20,10
+    CONTROL         "f2",ID_F2,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,50,
+                    100,20,10
+    CONTROL         "f3",ID_F3,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,75,
+                    100,20,10
+    CONTROL         "f4",ID_F4,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,100,
+                    100,15,10
+    CONTROL         "f5",ID_F5,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,125,
+                    100,20,10
+    CONTROL         "f6",ID_F6,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,150,
+                    100,20,10
+    CONTROL         "f7",ID_F7,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,170,
+                    100,15,10
+    CONTROL         "f8",ID_F8,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,25,
+                    125,20,10
+    CONTROL         "f9",ID_F9,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,50,
+                    125,20,10
+    CONTROL         "f10",ID_F10,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,75,
+                    125,20,10
+    CONTROL         "f11",ID_F11,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,
+                    100,125,20,10
+    CONTROL         "f12",ID_F12,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,
+                    125,125,20,10
+    CONTROL         "f13",ID_F13,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,
+                    150,125,20,10
+    GROUPBOX        "d-electrons",IDC_STATIC,10,15,180,60,BS_CENTER
+    CONTROL         "d2",ID_D2,"Button",BS_AUTORADIOBUTTON | WS_DISABLED | 
+                    WS_TABSTOP,50,30,20,10
+    CONTROL         "d3",ID_D3,"Button",BS_AUTORADIOBUTTON | WS_DISABLED | 
+                    WS_TABSTOP,75,30,20,10
+    CONTROL         "d4",ID_D4,"Button",BS_AUTORADIOBUTTON | WS_DISABLED | 
+                    WS_TABSTOP,100,30,20,10
+    CONTROL         "d5",ID_D5,"Button",BS_AUTORADIOBUTTON | WS_DISABLED | 
+                    WS_TABSTOP,125,30,20,10
+    CONTROL         "f1",ID_F1,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,25,
+                    100,20,10
+    CONTROL         "d6",ID_D6,"Button",BS_AUTORADIOBUTTON | WS_DISABLED | 
+                    WS_TABSTOP,25,55,20,10
+    CONTROL         "d7",ID_D7,"Button",BS_AUTORADIOBUTTON | WS_DISABLED | 
+                    WS_TABSTOP,50,55,20,10
+    CONTROL         "d8",ID_D8,"Button",BS_AUTORADIOBUTTON | WS_DISABLED | 
+                    WS_TABSTOP,75,55,20,10
+    CONTROL         "d9",ID_D9,"Button",BS_AUTORADIOBUTTON | WS_DISABLED | 
+                    WS_TABSTOP,100,55,20,10
+END
+
+RESULTS DIALOGEX 0, 0, 254, 158
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION
+CAPTION "Results"
+MENU FILEM
+FONT 10, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,143,136,35,15
+    PUSHBUTTON      "Cancel",IDCANCEL,202,136,35,15
+    LISTBOX         ID_CALCULATE_RESULTS,21,39,40,92,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP,WS_EX_RIGHT
+    CTEXT           "Energy levels",IDC_STATIC,17,18,47,8
+    CTEXT           "Vector ",IDC_STATIC,77,46,45,8
+    CTEXT           "Imaginary",IDC_STATIC,195,46,35,8
+    LISTBOX         ID_CALCULATE_VECTORS,147,57,35,69,LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         ID_CALCULATE_VECTORS2,196,58,35,68,LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "Default name for a current task",ID_CSTATICNAME,71,17,
+                    169,10,SS_SUNKEN
+    GROUPBOX        "Eigenvectors",IDC_STATIC,69,34,170,97,BS_CENTER
+    LISTBOX         ID_CALCULATE_VECTORSN,75,56,60,70,LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "Real",IDC_STATIC,146,47,35,8
+END
+
+TERMS DIALOG DISCARDABLE  0, 0, 194, 175
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP
+FONT 10, "MS Sans Serif"
+BEGIN
+    LISTBOX         ID_CTERMSALL,20,50,35,100,LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add  All --->",ID_CADDALL,70,65,55,12
+    PUSHBUTTON      "Add  --->",ID_CADD,70,45,55,12
+    PUSHBUTTON      "<--- Remove ",ID_CREMOVE,70,95,55,11
+    PUSHBUTTON      "<--- Remove  All",ID_CREMOVEALL,70,115,55,12
+    LISTBOX         ID_CTERMSINCLUDED,140,50,35,100,LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "Terms selected",IDC_STATIC,135,35,50,9
+    CTEXT           "Terms total",IDC_STATIC,15,35,45,10
+    PUSHBUTTON      "OK",IDOK,61,156,26,12
+    CTEXT           "Energy levels will be determined for selected terms",
+                    IDC_STATIC,10,10,165,10,SS_SUNKEN
+    PUSHBUTTON      "Cancel",IDCANCEL,105,155,27,13
+END
+
+OPTIONS DIALOGEX 0, 0, 206, 147
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Options"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CTEXT           "Enter title for current task",IDC_STATIC,20,0,83,10
+    EDITTEXT        ID_ONAME,5,10,97,12,ES_AUTOHSCROLL,WS_EX_STATICEDGE
+    GROUPBOX        "Crystal field normalization",IDC_STATIC,5,30,100,40,
+                    BS_CENTER
+    CONTROL         "Manual selection of terms",ID_OTERMSSEL,"Button",
+                    BS_AUTOCHECKBOX | BS_CENTER | BS_VCENTER | WS_TABSTOP,12,
+                    86,92,10
+    PUSHBUTTON      "OK",IDOK,143,122,50,15
+    CONTROL         "Wybourne normalization",ID_ONORMW,"Button",
+                    BS_AUTORADIOBUTTON,10,40,85,10
+    CONTROL         "Stevens normalization",ID_ONORMS,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED,10,55,80,10
+    EDITTEXT        ID_OVECT,160,20,32,12,ES_AUTOHSCROLL
+    GROUPBOX        "Results",IDC_STATIC,112,0,88,110,BS_CENTER
+    CTEXT           "Percents",IDC_STATIC,125,20,35,10
+    GROUPBOX        "Vectors",IDC_STATIC,116,10,79,45,BS_CENTER
+    CTEXT           "Limit(max)",IDC_STATIC,125,75,30,10
+    EDITTEXT        ID_OENERGY,160,75,32,12,ES_AUTOHSCROLL
+    GROUPBOX        "Energy",IDC_STATIC,116,60,79,45,BS_CENTER
+    CTEXT           "Number",IDC_STATIC,125,35,35,10
+    EDITTEXT        ID_OVECTNUMB,160,35,32,12,ES_AUTOHSCROLL
+    CTEXT           "Limit(min)",IDC_STATIC,125,90,30,10
+    EDITTEXT        ID_OENERGY2,160,90,32,12,ES_AUTOHSCROLL | WS_DISABLED
+    CTEXT           "Range: 1-25",IDC_STATIC,14,121,51,10
+    EDITTEXT        ID_FITTING_ACCURACYOENERGY,77,119,22,12,ES_AUTOHSCROLL
+    GROUPBOX        "Fitting Accuracy",IDC_STATIC,8,110,100,29,BS_CENTER
+END
+
+PARAMCR DIALOG DISCARDABLE  0, 0, 352, 282
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Crystal Field Parameters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_LIST1,10,35,35,215,LBS_NOINTEGRALHEIGHT | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "Rank 2",IDC_STATIC,60,60,24,8
+    PUSHBUTTON      "Undo",IDRETRY,165,265,35,14
+    GROUPBOX        "Crystal Field Parameters",IDC_STATIC,50,20,295,240,
+                    BS_CENTER
+    CTEXT           "Rank 4",IDC_STATIC,60,135,24,8
+    CTEXT           "Rank 6",IDC_STATIC,60,210,24,8
+    EDITTEXT        ID_PCR20,90,60,25,14
+    EDITTEXT        ID_PCR40,90,135,25,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_PCR60,90,210,25,14
+    CTEXT           "Re",IDC_STATIC,260,110,10,10
+    CTEXT           "Im",IDC_STATIC,260,140,10,10
+    CTEXT           "Point Group",IDC_STATIC,5,20,40,8,WS_DISABLED
+    CTEXT           "1",IDC_STATIC,135,245,9,8
+    CTEXT           "Index",IDC_STATIC,55,245,35,8
+    CTEXT           "0",IDC_STATIC,95,245,9,8
+    CTEXT           "2",IDC_STATIC,170,245,9,8
+    CTEXT           "3",IDC_STATIC,205,245,9,8
+    CTEXT           "4",IDC_STATIC,240,245,9,8
+    CTEXT           "5",IDC_STATIC,275,245,9,8
+    CTEXT           "6",IDC_STATIC,310,245,9,8
+    CTEXT           "Re",IDC_STATIC,330,195,10,10
+    CTEXT           "Re",IDC_STATIC,190,45,10,10
+    CTEXT           "Im",IDC_STATIC,190,75,10,10
+    CTEXT           "Im",IDC_STATIC,330,225,10,10
+    PUSHBUTTON      "Cancel",IDCANCEL,285,265,35,14
+    CTEXT           "Default name for current task",ID_PCR_TASKNAME,50,5,295,
+                    8
+    PUSHBUTTON      "OK",IDOK,225,265,35,14
+    EDITTEXT        ID_PCR21,125,45,25,14
+    EDITTEXT        ID_PCR23,125,75,25,14
+    EDITTEXT        ID_PCR22,160,45,25,14
+    EDITTEXT        ID_PCR24,160,75,25,14
+    EDITTEXT        ID_PCR41,125,120,25,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_PCR42,160,120,25,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_PCR43,195,120,25,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_PCR44,230,120,25,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_PCR45,125,150,26,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_PCR46,160,150,25,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_PCR47,195,150,25,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_PCR48,230,150,25,14,ES_AUTOHSCROLL
+    EDITTEXT        ID_PCR61,125,195,25,14
+    EDITTEXT        ID_PCR62,160,195,25,14
+    EDITTEXT        ID_PCR63,195,195,25,14
+    EDITTEXT        ID_PCR64,230,195,25,14
+    EDITTEXT        ID_PCR65,265,195,25,14
+    EDITTEXT        ID_PCR66,300,195,25,14
+    EDITTEXT        ID_PCR67,125,225,25,14
+    EDITTEXT        ID_PCR68,160,225,25,14
+    EDITTEXT        ID_PCR69,195,225,25,14
+    EDITTEXT        ID_PCR70,230,225,25,14
+    EDITTEXT        ID_PCR71,265,225,25,14
+    EDITTEXT        ID_PCR72,300,225,25,14
+END
+
+J-VALUE DIALOG DISCARDABLE  0, 0, 87, 117
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "2J-Value"
+FONT 8, "Arial"
+BEGIN
+    DEFPUSHBUTTON   "Done",IDOK,50,10,30,14
+    LISTBOX         ID_MJLIST,10,5,30,104,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+FILETREE DIALOG DISCARDABLE  0, 0, 267, 207
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Record"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,205,5,55,14
+    PUSHBUTTON      "Cancel",IDCANCEL,205,35,55,14
+    EDITTEXT        ID_FILETREEDIT,10,185,185,14,ES_AUTOHSCROLL
+    LTEXT           "Electronic Shell",IDC_STATIC,15,10,50,8
+    LISTBOX         ID_FILETREELIST1,25,55,30,110,LBS_NOINTEGRALHEIGHT | NOT 
+                    WS_BORDER | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         ID_FILETREELIST2,80,55,115,110,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CHECKBOX        "Read Only",ID_FILETREECHECK,205,145,55,10
+    LTEXT           "Ion Name:",IDC_STATIC,25,45,34,8
+    LTEXT           "Compounds:",IDC_STATIC,85,45,40,8
+    COMBOBOX        ID_FILETREECOMBO,25,20,35,35,CBS_DROPDOWN | CBS_SORT | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Copy Record",ID_FILETREECOPY,205,65,55,14
+    LTEXT           "Number of electrons is",IDC_STATIC,85,10,70,8
+    LTEXT           "1",ID_FILETREENELEC,160,10,10,8
+    PUSHBUTTON      "Delete Record",ID_FILETREEDELETE,205,95,55,14
+    PUSHBUTTON      "Change Compound",ID_FILETREECHANGE,10,170,65,11
+END
+
+PASSWORD DIALOG DISCARDABLE  0, 0, 112, 72
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION
+CAPTION "Enter Password"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,5,50,40,14
+    PUSHBUTTON      "Cancel",IDCANCEL,65,50,40,14
+    EDITTEXT        ID_PASSWORD,5,25,100,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Enter Password to modify record",IDC_STATIC,5,10,105,10
+END
+
+PARAD DIALOG DISCARDABLE  0, 0, 175, 217
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Advanced Parameters"
+FONT 10, "Arial"
+BEGIN
+    GROUPBOX        "Configuration parameters",IDC_STATIC,5,20,165,90,
+                    BS_CENTER | WS_GROUP
+    EDITTEXT        ID_PA,16,40,34,12
+    PUSHBUTTON      "OK",IDOK,65,195,40,15
+    PUSHBUTTON      "Cancel",IDCANCEL,120,195,40,15
+    EDITTEXT        ID_PBE,16,64,34,12
+    CTEXT           "1000*Alpha",IDC_STATIC,15,30,40,8
+    CTEXT           "Beta",IDC_STATIC,20,55,25,8
+    CTEXT           "Gamma",IDC_STATIC,20,80,25,8
+    GROUPBOX        "Magnetic parameters",IDC_STATIC,5,115,165,70,BS_CENTER
+    EDITTEXT        ID_PGA,16,90,34,12
+    CTEXT           "Default name for current task",ID_PFSTATICNAME,5,5,160,
+                    10
+    PUSHBUTTON      "Undo",IDRETRY,10,195,40,15
+    CTEXT           "t2",IDC_STATIC,75,30,30,8
+    CTEXT           "t6",IDC_STATIC,130,30,30,8
+    EDITTEXT        ID_PT2,75,40,30,12
+    CTEXT           "t3",IDC_STATIC,75,55,30,8
+    CTEXT           "t7",IDC_STATIC,130,55,30,8
+    EDITTEXT        ID_PT3,75,65,30,12
+    EDITTEXT        ID_PT7,130,65,30,12
+    EDITTEXT        ID_PT6,130,40,30,12
+    EDITTEXT        ID_PT4,75,90,30,12
+    EDITTEXT        ID_PT8,130,90,30,12
+    CTEXT           "t4",IDC_STATIC,75,80,30,8
+    CTEXT           "t8",IDC_STATIC,130,80,30,8
+    CTEXT           "M0*100",IDC_STATIC,20,125,25,8
+    EDITTEXT        ID_PM0,18,135,27,12
+    EDITTEXT        ID_PM2,71,135,29,12
+    EDITTEXT        ID_PM4,126,135,29,12
+    CTEXT           "M2*100",IDC_STATIC,75,125,25,8
+    CTEXT           "M4*100",IDC_STATIC,130,125,25,8
+    CTEXT           "P2",IDC_STATIC,20,155,25,8
+    EDITTEXT        ID_PP2,18,165,27,12
+    CTEXT           "P4",IDC_STATIC,75,155,25,8
+    CTEXT           "P6",IDC_STATIC,130,155,25,8
+    EDITTEXT        ID_PP4,70,165,30,12
+    EDITTEXT        ID_PP6,126,165,29,12
+END
+
+FILETREENEW DIALOG DISCARDABLE  0, 0, 267, 102
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Record"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,205,35,55,14
+    PUSHBUTTON      "Set",IDYES,205,7,55,14
+    LTEXT           "Electronic Shell",-1,15,10,50,8
+    CHECKBOX        "Read Only",ID_FILETREECHECK,205,85,55,10
+    LTEXT           "Ion Name:",-1,25,45,34,8
+    LTEXT           "Compound:",-1,85,45,40,8
+    COMBOBOX        ID_FILETREECOMBO,25,20,35,35,CBS_DROPDOWN | CBS_SORT | 
+                    WS_TABSTOP
+    LTEXT           "Number of electrons is",-1,80,20,70,15
+    EDITTEXT        ID_FILETREENEDIT3,155,20,12,12
+    EDITTEXT        ID_FILETREENEDIT2,80,65,110,14
+    EDITTEXT        ID_FILETREENEDIT1,25,65,25,14
+    PUSHBUTTON      "Cancel",IDCANCEL,205,65,55,14
+END
+
+PROGRESSDB DIALOGEX 0, 0, 170, 175
+STYLE DS_3DLOOK | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Opening..."
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Progress1",ID_PROGRESSE,"msctls_progress32",0x0,10,35,
+                    145,9,WS_EX_CLIENTEDGE
+    CONTROL         "Progress1",ID_PROGRESSC,"msctls_progress32",0x0,10,135,
+                    145,10,WS_EX_CLIENTEDGE
+    CTEXT           "Opening magnetic database",IDC_STATIC,5,65,150,8
+    CTEXT           "Opening electrostatic database",IDC_STATIC,5,15,150,8
+    CONTROL         "Progress1",ID_PROGRESSM,"msctls_progress32",0x0,10,85,
+                    145,10,WS_EX_CLIENTEDGE
+    CTEXT           "Opening crystal field database",IDC_STATIC,10,115,150,8
+END
+
+NEW DIALOGEX 0, 0, 245, 236
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP
+EXSTYLE WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "FIELD",IDC_STATIC,"Static",SS_BITMAP | SS_CENTERIMAGE | 
+                    SS_REALSIZEIMAGE,0,0,133,121
+    LTEXT           "License",ID_LICENSE,138,1,104,120,SS_SUNKEN
+    PUSHBUTTON      "OK",IDOK,192,222,50,14
+    LTEXT           "Disclaimer",ID_DISCLAIMER,3,143,239,77,SS_SUNKEN
+END
+
+FITOPTIONS DIALOG DISCARDABLE  0, 0, 266, 214
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Fitting Options"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,130,193,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,209,193,50,14
+    CONTROL         "Slider1",IDC_SLIDER1,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    TBS_VERT | TBS_BOTH | WS_TABSTOP,33,90,28,55
+    GROUPBOX        "Coulomb",IDC_STATIC,20,80,51,70,BS_CENTER
+    LTEXT           "",IDC_STATIC,15,70,225,1,NOT WS_GROUP
+    GROUPBOX        "Spin",IDC_STATIC,105,80,51,70,BS_CENTER
+    GROUPBOX        "Crystal field",IDC_STATIC,190,80,43,71,BS_CENTER
+    CONTROL         "Slider1",IDC_SLIDER2,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    TBS_VERT | TBS_BOTH | WS_TABSTOP,119,90,28,55
+    CONTROL         "Slider1",IDC_SLIDER3,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    TBS_VERT | TBS_BOTH | WS_TABSTOP,201,90,27,55
+END
+
+MASK DIALOG DISCARDABLE  0, 0, 313, 228
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Selection"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Configuration parameters",IDC_STATIC,135,21,170,80,
+                    BS_CENTER
+    PUSHBUTTON      "OK",IDOK,14,203,35,18
+    PUSHBUTTON      "Cancel",IDCANCEL,81,203,35,18
+    GROUPBOX        "Magnetic parameters",IDC_STATIC,135,115,170,80,
+                    BS_CENTER
+    CONTROL         "Alpha",IDC_PAR1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    159,33,49,12
+    CONTROL         "Beta",IDC_PAR2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    159,58,49,12
+    CONTROL         "Gamma",IDC_PAR3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    159,82,49,12
+    CONTROL         "t2",IDC_PAR4,"Button",BS_AUTOCHECKBOX | WS_DISABLED | 
+                    WS_TABSTOP,229,33,26,12
+    CONTROL         "t3",IDC_PAR5,"Button",BS_AUTOCHECKBOX | WS_DISABLED | 
+                    WS_TABSTOP,229,58,26,12
+    CONTROL         "t4",IDC_PAR6,"Button",BS_AUTOCHECKBOX | WS_DISABLED | 
+                    WS_TABSTOP,229,82,26,12
+    CONTROL         "t6",IDC_PAR7,"Button",BS_AUTOCHECKBOX | WS_DISABLED | 
+                    WS_TABSTOP,276,33,26,12
+    CONTROL         "t7",IDC_PAR8,"Button",BS_AUTOCHECKBOX | WS_DISABLED | 
+                    WS_TABSTOP,276,58,26,12
+    CONTROL         "t8",IDC_PAR9,"Button",BS_AUTOCHECKBOX | WS_DISABLED | 
+                    WS_TABSTOP,276,82,26,12
+    CONTROL         "M0",IDC_PARM1,"Button",BS_AUTOCHECKBOX | WS_DISABLED | 
+                    WS_TABSTOP,160,175,29,12
+    CONTROL         "M2",IDC_PARM2,"Button",BS_AUTOCHECKBOX | WS_DISABLED | 
+                    WS_TABSTOP,210,175,29,12
+    CONTROL         "M4",IDC_PARM3,"Button",BS_AUTOCHECKBOX | WS_DISABLED | 
+                    WS_TABSTOP,261,175,29,12
+    CONTROL         "Constrained fit for P2, P4, P6",IDC_PARM4,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,160,150,140,
+                    12
+    GROUPBOX        "Crystal field ",IDC_STATIC,9,76,99,111,BS_CENTER
+    CONTROL         "Cubic",IDC_RADIO_CF1,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFT | BS_VCENTER,25,90,59,12
+    CONTROL         "Tetragonal",IDC_RADIO_CF2,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFT | BS_VCENTER,25,130,59,12
+    CONTROL         "Trigonal",IDC_RADIO_CF3,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFT | BS_VCENTER,25,150,59,12
+    GROUPBOX        "Coulomb Parameters ",IDC_STATIC,10,20,99,43,BS_CENTER
+    CONTROL         "Constrained fit",IDC_PARC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,22,46,73,12
+    CONTROL         "Spin-Orbit interaction",IDC_PARM5,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,160,130,135,12
+    CTEXT           "Select parameters for fitting procedure",IDC_STATIC,21,
+                    5,269,10
+    CONTROL         "Hexagonal",IDC_RADIO_CF4,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFT | BS_VCENTER,25,110,59,12
+    CONTROL         "None",IDC_RADIO_CF5,"Button",BS_AUTORADIOBUTTON | 
+                    BS_LEFT | BS_VCENTER,25,169,59,12
+END
+
+DATAFIT DIALOG DISCARDABLE  0, 0, 164, 151
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Levels for fitting"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,53,118,61,17
+    LISTBOX         IDL_DATAFIT,7,7,150,98,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+RESULTSF DIALOGEX 0, 0, 284, 172
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION
+CAPTION "Results"
+MENU FILEM
+FONT 10, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,242,150,35,15
+    LISTBOX         ID_CALCULATE_RESULTS,58,39,40,92,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP,WS_EX_RIGHT
+    CTEXT           "Calc.",IDC_STATIC,55,24,47,8
+    CTEXT           "Vector ",IDC_STATIC,113,46,45,8
+    CTEXT           "Imaginary",IDC_STATIC,231,46,35,8
+    LISTBOX         ID_CALCULATE_VECTORS,183,57,35,78,LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         ID_CALCULATE_VECTORS2,232,58,35,77,LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "Default name for a current task",ID_CSTATICNAME,108,17,
+                    169,10,SS_SUNKEN
+    GROUPBOX        "Eigenvectors",IDC_STATIC,105,34,170,109,BS_CENTER
+    LISTBOX         ID_CALCULATE_VECTORSN,111,56,60,79,LBS_MULTIPLESEL | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "Real",IDC_STATIC,182,47,35,8
+    LISTBOX         ID_CALCULATE_RESULTSE,11,39,40,92,LBS_NOINTEGRALHEIGHT | 
+                    LBS_NOSEL | WS_VSCROLL | WS_TABSTOP,WS_EX_RIGHT
+    CTEXT           "Exp.",IDC_STATIC,7,24,47,8
+    CTEXT           "Energy levels",IDC_STATIC,7,14,97,8
+    CTEXT           "Average deviation",IDC_STATIC,25,140,60,8
+    CTEXT           " ",ID_FIT_ACCURACY,30,155,50,10
+END
+
+SITESELECT DIALOG DISCARDABLE  0, 0, 195, 170
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Select Site"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,15,145,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,135,145,50,14
+    LISTBOX         IDL_SITE,13,24,60,74,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Select the lattice site",IDC_STATIC,15,10,62,8
+    EDITTEXT        ID_SELECTTITLE,100,26,55,14,ES_AUTOHSCROLL
+    LTEXT           "Enter the title ",IDC_STATIC,100,14,55,8
+    EDITTEXT        ID_SELECTRE,100,65,55,14,ES_AUTOHSCROLL
+    LTEXT           "Enter the RE ion",IDC_STATIC,100,50,55,8
+    EDITTEXT        ID_LIGAND,100,105,55,14,ES_AUTOHSCROLL
+    LTEXT           "Enter the ligand",IDC_STATIC,100,90,55,8
+    EDITTEXT        ID_GPAR,14,115,55,14,ES_AUTOHSCROLL
+    LTEXT           "Parameter G",IDC_STATIC,14,103,55,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    "ABOUT", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 243
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 133
+    END
+
+    "PARAMF", DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 189
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 206
+    END
+
+    "REDUCED", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 327
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 185
+    END
+
+    "CONFIG", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 192
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 165
+    END
+
+    "RESULTS", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 247
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 151
+    END
+
+    "TERMS", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 187
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    "OPTIONS", DIALOG
+    BEGIN
+        RIGHTMARGIN, 200
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 144
+    END
+
+    "PARAMCR", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 345
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 275
+    END
+
+    "J-VALUE", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 80
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 110
+    END
+
+    "FILETREE", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 260
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 200
+    END
+
+    "PASSWORD", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 105
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 65
+    END
+
+    "PARAD", DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 173
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 215
+    END
+
+    "FILETREENEW", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 260
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 95
+    END
+
+    "PROGRESSDB", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 145
+    END
+
+    "FITOPTIONS", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 259
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 207
+    END
+
+    "MASK", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 306
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 221
+    END
+
+    "DATAFIT", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 157
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 144
+    END
+
+    "RESULTSF", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 277
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 165
+    END
+
+    "SITESELECT", DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 191
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 166
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+TOOLB                   BITMAP  DISCARDABLE     "main.bmp"
+FIELD                   BITMAP  DISCARDABLE     "four.bmp"
+TOOLBHOT                BITMAP  DISCARDABLE     "mainhot.bmp"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

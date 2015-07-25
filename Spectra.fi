@@ -1,0 +1,15 @@
+interface 
+integer(4) function InitApplication (hInstance) 
+!MS$ ATTRIBUTES STDCALL, ALIAS : '_InitApplication@4' :: InitApplication
+integer  hInstance 
+end function InitApplication
+end interface
+
+interface 
+integer(4) function InitInstance (hInstance,nCmdShow) 
+!MS$ ATTRIBUTES STDCALL, ALIAS : '_InitInstance@8' :: InitInstance
+integer     hInstance
+integer     nCmdShow
+end function InitInstance
+end interface
+

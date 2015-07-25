@@ -1,0 +1,143 @@
+<HTML>
+<HEAD>
+<TITLE>Spectra Web Site</TITLE>
+<layer NAME="a" LEFT="10" TOP="10" VISIBILITY="SHOW" BGCOLOR="navy"
+CLIP="0,0,3,3">
+</layer>
+<layer NAME="b" LEFT="10" TOP="10" VISIBILITY="SHOW" BGCOLOR="#5588cc"
+CLIP="0,0,3,3">
+</layer>
+<layer NAME="c" LEFT="10" TOP="10" VISIBILITY="SHOW" BGCOLOR="darkred"
+CLIP="0,0,3,3">
+</layer>
+<layer NAME="d" LEFT="10" TOP="10" VISIBILITY="SHOW" BGCOLOR="darkblue"
+CLIP="0,0,3,3">
+</layer>
+<layer NAME="e" LEFT="10" TOP="10" VISIBILITY="SHOW" BGCOLOR="#0000ff"
+CLIP="0,0,3,3">
+</layer>
+<layer NAME="f" LEFT="10" TOP="10" VISIBILITY="SHOW" BGCOLOR="black"
+CLIP="0,0,3,3">
+</layer>
+<layer NAME="g" LEFT="10" TOP="10" VISIBILITY="SHOW" BGCOLOR="black"
+CLIP="0,0,4,12">
+</layer>
+<layer NAME="h" LEFT="10" TOP="10" VISIBILITY="SHOW" BGCOLOR="black"
+CLIP="0,0,12,4">
+</layer>
+
+<script LANGUAGE="JavaScript1.2">
+// <!--
+var userAgent=navigator.appName + " " + navigator.appVersion;
+
+var agentInfo=userAgent.substring(0, 12);
+if(agentInfo >= "Netscape 4.0")
+
+{
+
+window.captureEvents(Event.MOUSEMOVE);
+
+var yBase = window.innerHeight/2;var xBase = window.innerWidth/2;
+var delay = 35;var step = 0.4;var currStep = 0;
+var Xpos = 50;var Ypos = 50;var j = 0;
+
+function MoveHandler(evnt) {
+  Xpos = evnt.pageX ;
+  Ypos = evnt.pageY ;
+}
+
+window.onMouseMove = MoveHandler;
+
+function animateatoms() {
+  yBase = window.innerHeight/4 ; xBase = window.innerWidth/6;
+
+  for ( j = 0 ; j < 6 ; j++ ) {
+
+    document.layers[j].top = 12+Ypos +
+
+Math.cos((20*Math.sin(currStep/(20+j)))+j*70)*yBase*(Math.sin(10+currStep/10)+0.2)*Math.cos((currStep + j*25)/10);
+
+    document.layers[j].left =8+Xpos +
+
+0.5*Math.sin((20*Math.sin(currStep/20))+j*70)*xBase*(Math.sin(10+currStep/(10+j))+0.2)*Math.cos((currStep + j*25)/10);
+
+  }
+document.layers[6].top = Ypos+10 
+document.layers[6].left =Xpos+10 
+document.layers[7].top = Ypos+4+10 
+document.layers[7].left =Xpos-4+10 
+  currStep += step; setTimeout("animateatoms()", delay) ;
+}
+animateatoms()
+}
+// -->
+</script>
+</LAYER>
+
+<META name="keywords" content="Spectra, spectroscopy, crystal field, optical, design, software, electronic structure, Stark">
+<META name="description" content="Software for paramagnetic ions energy levels calculation in crystals">
+</HEAD>
+<BODY bgcolor=#ddedee>
+<center><H1>Spectra </H1> </center>
+<HR>
+<dd>Spectra is a program for paramagnetic ions energy levels calculations. 
+It allows to calculate electronic structure of all elements with unfilled d- (not included in beta-version) and
+f-shells, including lanthanides and
+ actinides in crystalline hosts. It could be used in scientific research, educational institutions, industry (laser materials, chemical analysis etc).
+<br><br><dd>User friendly Windows interface allows to customize the number of terms to be
+included in calculation (up to all terms in a given electronic configuration), obtain the values of reduced matrix elements for 
+all d- and f-elements.
+<br><br><dd>Crystal field parameters could either be adjusted to fit
+experimental levels or calculated using exchange charge model (not included in this version).
+Fully consistent J-J' mixing is included for crystal field of any symmetry.<br>
+Optical and ESR spectra can be analyzed using unified approach with exact decomposition of wavefunctions for 
+each specific energy level.
+<br><br>
+
+<dd>
+Free-ion Hamiltonian for f-electrons includes Coulomb
+interaction; configurational interaction; spin-orbit
+coupling; spin-spin and spin-other-orbit interaction,
+correction to spin-orbit coupling due to configuration
+ interaction. Total number of free-ion parameters is 19: F2, F4, F6
+                             for Coulomb interaction; dzeta for spin-orbit coupling;
+                             alpha, beta and gamma for two-body integrals in
+                             configuration interaction; T2, T3, T4, T6, T7, T8 for
+                             three-body configuration interaction; M0, M2, M4 for
+                             Marvin integrals of magnetic interactions; P2, P4, P6 for
+                             spin-orbit corrections due to configuration interaction. 
+<br><br>
+For the fitting of experimental levels the user should create an ASCII file with .exp extension in c:\spectra\exp folder,
+containing in increasing order the values for experimental energy levels. If some of the levels are not available, a value
+of 1 should be put instead. These levels will not be fitted. The fitting algorithm is a variation of
+differential evolution method. It conducts a global search in parameters space. Hence, results of fitting
+are not critically dependent on initial values for parameters. The tradeoff is a slower performance - each fitting
+would require typically several hundreds of matrix diagonalization.
+
+<h3>System requirements</h3>
+<dd>This software is in a testing stage and it is <b>not optimized</b> neither for speed nor for memory usage.
+It was tested on Pentium-150 MMX with 32 MB RAM under Windows NT/Windows 95. However, some of the features will work
+on low end computers as well. 
+<H3>Installation</H3> 
+File sp.zip should be unzipped to the <b> root </b>C:\</b> folder. After installation there should be
+main folder C:\Spectra and three subfolders C:\Spectra\Lev; C:\Spectra\Des;C:\Spectra\Exp
+<UL>
+<LI><a href="sp.zip">Beta-version</a> (download size: 1.058Kb)
+</UL>
+<br>
+
+</BODY>
+<HR>
+
+<ADDRESS>
+<hr><b>Disclaimer</b><br>
+The SPECTRA software described here is provided without
+          warranty of any kind. No liability is taken for any loss or damages, direct or indirect,
+            that may result through the use of SPECTRA. No warranty is made with respect to this
+            manual, or the program and functions therein. There are no warranties that the
+            program or their documentation are free of error, or that it is consistent with any
+            standard, or that it will meet the requirement for a particular application.</ADDRESS>
+<br><br>
+
+
+</HTML>

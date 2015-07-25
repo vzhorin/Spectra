@@ -1,0 +1,522 @@
+		     Implementation documentation	
+	
+		Routines and files used in Spectra code
+
+
+			 1.File main.f90 
+
+contains basic windows functions for initialization of windows application.
+
+
+Requirements: global definition of interface to WinMain function.
+
+----------------------------------------------------------------------------
+integer(4) function WinMain( hInstance, hPrevInstance, lpCmdLine, nCmdShow)
+integer(4) hInstance,hPrevInstance, lpszCmdLine, nCmdShow
+----------------------------------------------------------------------------
+
+Requirements: modules msfwina(MS supplied definitions of windows procedures), 
+spinc; header file spectra.fi with interface to InitApplication and InitInstance routines.
+
+ PURPOSE: Main routine of the Windows program. It calls InitApplication and InitInstance routines.
+
+-------------------------------------------------
+ integer*4 function InitApplication (hInstance)
+-------------------------------------------------
+
+Requirements: modules msfwina(MS supplied definitions of windows procedures), 
+spinc; interface to MainWndProc from wina.f90 file.
+
+ PURPOSE: This routine fills all required fields for T_WNDCLASS structure, determining the 
+properties of main window, and registers the window class . The MainWndProc routine
+ is indicated as the procedure for handling  messages, dispatched to the main window.
+
+------------------------------------------------------
+integer*4 function InitInstance (hInstance, nCmdShow)
+------------------------------------------------------
+
+Requirements: modules msfwina(MS supplied definitions of windows routines), 
+spinc.
+
+ PURPOSE: This routine creates and shows the main Spectra window. It transfers the execution 
+to the MainWndProc, which handles all messages dispatched to the main Spectra window.
+
+			 2.File wina.f90
+
+contains MainWndProc and About functions.
+
+---------------------------------------------------------------
+integer*4 function MainWndProc(hWnd, message, wParam, lParam)
+integer*4   hWnd,  wParam, lParam, message
+---------------------------------------------------------------
+
+Requirements: modules msfwina(MS supplied definitions of windows routines), 
+msflib(MS supplied run-time windows functions, required for DELFILESQQ function),
+spinc, diaproc, toolb, pardia, matrix, ctrl, expfit, lattice; interface to function About.
+
+ PURPOSE: This is main routine processing window messages:
+
+WM_CREATE     - show Spectra logo(call newfunc procedure), create window and objects
+WM_PAINT      - update window, draw objects
+WM_SIZE     - redraw window and toolbar if size of window is changed
+WM_DESTROY    - destroy window
+WM_NOTIFY     - notify toolbar procedure if mouse is over toolbar buttons
+WM_COMMAND    - application menu
+	ID_HELPCONTENT - show Spectra.hlp file
+	ID_ABOUT - show information about software, call function About
+	ID_EXIT - exit program
+	ID_MATRIX - show dialog box to access reduced matrix elements 
+		        database, call function Reduced from module diaproc
+	ID_ENERGY_LEVELS - show precalculated energy levels dialog box,
+			     call function results from module diaproc
+	ID_CALCULATE - calculate energy levels, call separate thread 
+		             with function calc from module diaproc
+	ID_STOPIT - terminates execution of calculation thread (not safe!!!)
+	ID_FIELD_CALCULATE - make crystal lattice, create nearest environment
+			         and calculate crystal field parameters
+	ID_OPTIONS - dialog box to change options in program, call function Options
+		          from module diaproc
+	ID_PFREEION_NEW - dialog box to input free-ion parameters,
+			     call function Paramf from module diaproc
+	ID_PFREEION_OPEN - dialog box to show and change saved free-ion parameters,
+			      call pfreeopen from module diaproc
+	ID_PCR_NEW - dialog box to input crystal field parameters,
+		          call function Paramcr from module diaproc
+	ID_PCR_OPEN - dialog box to show and change saved crystal-field parameters,
+		           call function pcropen from module diaproc
+	ID_PAD_NEW - dialog box to input advanced free-ion parameters,
+		           call function Parad from module diaproc
+	ID_PAD_OPEN - dialog box to show and change saved advanced free-ion
+		            parameters, call function paradopen from module diaproc
+	ID_PSAVE - save all parameters of model Hamiltonian, call function psave
+		    from module diaproc
+	ID_FILECLOSE - close opened record for a given ion in solid, change toolbar,
+		            background color, deallocate memory and clean temp files
+	ID_FILEOPEN - dialog box to open a record for ion in solid (function filetree),
+		           indicate time required (function progress from diaproc), 
+		           change toolbar
+	ID_FILENEW - dialog box to create a new record for ion in solid, call
+		          function filetreen from module diaproc
+	ID_FIT - full fitting, no truncation, J-J' mixing - time consuming, calls
+               function fitexp in module expfit
+      ID_FASTFIT  - no J-J' mixing, matrix is truncated, calls
+               function fitexp in module expfit
+        
+------------------------------------------------------------
+integer*4 function About( hDlg, message, wParam, lParam )
+------------------------------------------------------------
+Requirements: modules msfwina(MS supplied definitions of windows routines), 
+spinc, diaproc.
+ PURPOSE:  shows information about Spectra software, information is taken from
+VS_VERSION_INFO structure in Script1.rc file.
+
+		3.File diaproc.f90
+contains module diaproc, which implements dialog processing functions.
+
+Requirements: global definition of integer*4 variables jfromdialog and hDlgModeless for
+modeless dialogs in Reduced routine; modules msfwina, spinc, dataman, matrix.
+
+-------------------------------------------------------------
+integer*4 function Reduced( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+
+ PURPOSE: Processes messages for Reduced dialog box.
+Requirements: calls function jval to process J-value dialog box messages
+
+WM_INITDIALOG - initialize dialog box
+WM_COMMAND - dialog box messages, selection of terms and interaction type
+	ID_MQUERY - search in database for reduced matrix element
+  
+-------------------------------------------------------------
+integer*4 function calc( )
+-------------------------------------------------------------
+
+use modules pardia, matrix
+
+ PURPOSE: Calculates matrix elements and does diagonalization
+
+-------------------------------------------------------------
+integer*4 function terms( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+
+ PURPOSE: Processes messages for TERMS dialog box, called from calc() function
+Messages : ID_CADD, ID_CADDALL, ID_CREMOVE, ID_CREMOVEALL - deal with
+selection of ion terms for calculations.
+
+
+-------------------------------------------------------------
+integer*4 function results( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+use modules openfort, zeeman
+ PURPOSE: Shows and processes results of calculations
+Messages ID_ZEEMAN_G - calculate g-factor value from wavefunctions,
+ID_CALCULATE_SAVE - save results of calcualtions.
+
+
+-------------------------------------------------------------
+integer*4 function resultsfit( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+Same as results, shows in addition experimental values and deviation value.
+
+-------------------------------------------------------------
+integer*4 function Options( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+
+ PURPOSE: Shows OPTIONS dialog box.
+Allows to set accuracy of fitting, title of case, 
+maximum energy value for LS-terms selection, number of
+components in wavefunction vectors.
+
+-------------------------------------------------------------
+integer*4 function Paramf( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+
+
+ PURPOSE:  Perform dialog to input free-ion parameters
+
+
+-------------------------------------------------------------
+integer*4 function Parad( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+
+
+ PURPOSE:  Perform dialog to input advanced free-ion parameters
+
+
+-------------------------------------------------------------
+integer*4 function Paramcr( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+
+
+ PURPOSE:  Perform dialog to input crystal field parameters
+
+
+-------------------------------------------------------------
+integer*4 function filetree( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+
+ PURPOSE: Shows dialog box for record opening
+
+
+-------------------------------------------------------------
+integer*4 function filetreen( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+
+ PURPOSE: Shows dialog box for new record's information filling
+
+-------------------------------------------------------------
+integer*4 function BpkCalc( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+ PURPOSE: allows to save results of crystal field calculations
+
+
+-------------------------------------------------------------
+integer function deActivateMenu(hmenu), reActivateMenu(hmenu)
+-------------------------------------------------------------
+
+ PURPOSE: change menu status before and after the opening of a record
+
+-------------------------------------------------------------
+integer*4 function newfunc( hDlg, message, wParam, lParam )
+-------------------------------------------------------------
+uses module msflib 
+
+ PURPOSE: shows a splash screen at the launching of SPECTRA, writes
+down a license agreement text to hard drive.
+
+-------------------------------------------------------------
+integer*4 function progress( hDlg, message, wParam, lParam)
+-------------------------------------------------------------
+uses moules pardia, ctrl, toolb, multi, matrix
+
+ PURPOSE: opens a database data for particular fn configuration, fills
+irreducible tensor operator matrix elements for all interactions (functions
+in module multi).
+The progress in opening is shown visually by progress bars.
+
+
+
+
+		4.File ctrl.f90
+
+contains module ctrl, which implements interface to toolbar and status bar
+functionality for fortran 90 code with native Win32 API calls.
+It should be modified for Digital Fortran Visual Studio, since this
+development tool uses its own implementation of this options 
+in visual interface.
+
+uses module msfwina
+
+		5.File toolbar.f90
+
+contains module toolb, which contains functions to create and
+use a toolbar buttons. This module is directly connected with ctrl module
+
+uses msfwina, spinc, ctrl
+
+		6.File openfile.f90
+
+contains module openfort, which allows to use standart Windows openfile 
+dialogs for selecting and opening files in SPECTRA.
+
+uses modules msfwina, spinc.
+
+Currently it contains four different functions Initoflev,
+Initofdes, Initoflat, Initofexp to open files of different
+types for SPECTRA. It is recommended that in future  a better
+modular structure should be implemented to avoid unnecessary
+repetition of the same code.
+
+
+		7.File multi.f90
+
+contains module multi, which implements multithreaded (different
+threads for electrostatic, magnetic and crystal-field operators)
+opening of matrix elements database.
+
+uses module msfwina
+
+		8.File zeeman.f90
+
+contains module zeeman with integer function gfactor() to calculate 
+the value of g-factor.
+Also defines types quanum and gval to hold information about
+particular quantum states.
+
+uses modules msfwina, dataman.
+
+
+		9.File data.f90
+
+contains module dataman, which defines several
+data types and auxillary functions, used for 
+data manipulations and matrix processing.
+In this module the format of database records for matrix elements
+is described. 
+One of the key modules!!! Do not change it unless you
+understand the structure of program in details. Changing the
+format of data can make the program and database unusable!!!
+
+
+		10.File matel.f90
+
+contains module matel with  mathematical 
+functions, required for tensor algebra calculations:
+ real*8 function V11(S,L,J,MJ,S1,L1,J1,MJ1,R)
+ real*8 FUNCTION threej(J1,J2,J3,M1,M2,M3)
+ real*8 function ClG(j1,j2,j3,m1,m2,m3)
+ real*8 FUNCTION SIXJ(J1,J2,J3,L1,L2,L3) 
+
+WARNING! 3-j, 6-j and Clebsch-Gordan functions take
+doubles of actual values of J1,J2 etc.
+
+
+		11.File pardia.f90
+
+contains module pardia, which describes format for 
+f-ions records (type vse) and parameters of model 
+Hamiltonian (electro, magnetic, Bpk).
+Also, it defines constraints on the parameters
+ratio in fitting procedure.
+
+		12.File matrix.f90
+
+contains module matrix, which is the key module for
+matrix elements calculations and diagonalization of 
+Hamiltonian.
+
+uses modules dataman, matel, pardia, msimsl, spinc
+
+Functions: 
+
+---------------------------------
+integer function matj( )
+---------------------------------
+
+ PURPOSE: builds LSJ matrix, fills it with 
+matrix elements for all interactions, based on
+irreducible tensor operator algebra
+
+---------------------------------
+integer function finmat( )
+---------------------------------
+ PURPOSE: builds final complete LSJJ' matrix,
+conduct diagonalization using 
+subroutine from IMSL package (devchf - compute all 
+of the eigenvalues and eigenvectors of a complex 
+Hermitian matrix) and sort the results in 
+special format for output in dialog box RESULTS.
+
+
+---------------------------------
+integer function finmatre( )
+---------------------------------
+ PURPOSE: builds final real LSJJ' matrix,
+conduct diagonalization using 
+subroutine from IMSL package (devcsf - compute all 
+of the eigenvalues and eigenvectors of a real 
+symmetric matrix) and sort the results in 
+special format for output in dialog box RESULTS.
+
+
+---------------------------------
+integer function matls( )
+---------------------------------
+
+PURPOSE: builds final real LS matrix,
+conduct diagonalization using 
+subroutine from IMSL package (devcsf - compute all 
+of the eigenvalues and eigenvectors of a real 
+symmetric matrix) and sort the results in 
+special format for output in dialog box RESULTS.
+
+This function is used in fastfit option to select
+the LS terms, which will be included in building
+LSJ matrix, by analyzing all wavefunctions composition
+up to the energy value EFIX, defined in module spinc.
+
+---------------------------------
+integer function fastmatj( )
+---------------------------------
+
+PURPOSE: builds final real LSJ matrix, based
+on output of matls diagonalization, 
+conduct diagonalization using 
+subroutine from IMSL package (devcsf - compute all 
+of the eigenvalues and eigenvectors of a real 
+symmetric matrix) and sort the results in 
+special format for output in dialog box RESULTS.
+
+Used in fastfit option.
+
+---------------------------------
+integer function sortfast()
+---------------------------------
+
+PURPOSE: decode results of matrix diagonalization
+during fitting procedure into output form. Extremely important
+to optimize for speed.
+
+---------------------------------------
+subroutine numel(id,cha1,cha2,nr,flag)
+---------------------------------------
+
+PURPOSE: search database for reduced matrix element value of
+electrostatic interactions for particular terms (cha1, cha2). 
+Result is the number of found record nr.
+
+It is recommended to improve this search procedure, which
+is currently not optimal.
+
+---------------------------------------
+subroutine numel(cha1,cha2,nr,flag)
+---------------------------------------
+
+PURPOSE: the same as that of numel, only for crystal-field interaction
+
+-------------------------------------------
+subroutine numspin(ij,id,cha1,cha2,nr,flag)
+-------------------------------------------
+
+PURPOSE: the same as that of numel, only for magnetic interactions
+
+
+
+!******Crystal field matrix elements calculation*************
+real function concr(i,i1,m,m1,iflag)
+!iflag =0 => real part of matrix; flag=1 => Im part of matrix
+!************************************************************
+
+
+		13.File expfit.f90
+
+Contains module expfit for fitting experimental energy levels values.
+Uses modules spinc, msfwina, dataman, matrix, pardia, msimsl, openfort, diaproc
+
+
+		14.File apk.f90
+
+Contains module apk with constants, required for crystal field calculations,
+spherical polynomials functions and function parex() to calculate
+the value of CF parameters. Function parcou for Coulomb interaction
+calculations is currently not used, but it can be easily 
+pluged into a scheme of CF parameters calculations.
+
+Uses module msfwina
+
+		15.File lattice.f90
+Contains module lattice, which is used for
+structure information processing and preparing all
+data, required for CF calculations.
+Uses apk, openfort, spinc
+
+
+--------------------------------------------------------------
+integer*4 function latdialog( hDlg, message, wParam, lParam )
+--------------------------------------------------------------
+
+PURPOSE: shows dialog box, which allows user to
+select the lattice site for CF calculations, choose the 
+type of f-ion and ligand.
+
+---------------------------
+integer function makelat()
+---------------------------
+
+PURPOSE: makes lattice on the basis of primitive
+cell from prepared by user file (.lat). Builds up to 13
+primitive cells in all 6 directions. Uses subroutine 
+sort to create coordination spheres around the rare-earth ion
+site. Currently, sort is set to include only lattice ions with
+distance less then 3.1 angstrems from the rare-earth ion site.
+This parameter RMAX can be easily modified, if more coordination
+spheres are needed.
+
+------------------------------
+integer function getLigands()
+------------------------------
+
+PURPOSE: opens file with coordinates of ligands (.xyz)
+
+------------------------------
+integer function doAnalysis()
+------------------------------
+PURPOSE: analyzes information about ligands and rare-earth ion,
+prepares appropriate parameters for CF calculations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
